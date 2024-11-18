@@ -1,3 +1,4 @@
+use bevy::DefaultPlugins;
 use bevy::prelude::IntoSystemConfigs;
 use bevy::prelude::{App, Commands, Component, Query, Startup, Update, With};
 
@@ -34,6 +35,7 @@ fn update_people(mut query: Query<&mut Name, With<Person>>) {
 
 fn main() {
     App::new()
+        .add_plugins(DefaultPlugins)
         .add_systems(Startup, add_people)
         .add_systems(Update, (hello_world, (update_people, greet_people).chain()))
         .run();
